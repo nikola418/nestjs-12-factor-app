@@ -3,15 +3,13 @@ services:
   dev-db:
     container_name: 12-factor-app-dev-db
     image: postgres:latest
-    env_file:
-      - ../.env
+    environment:
+      POSTGRES_USER: 'postgres'
+      POSTGRES_PASSWORD: 'postgres'
     ports:
       - 5432:5432
-    volumes:
-      - postgres:/var/lib/postgresql/data
     networks:
       - 12-factor-app
-volumes:
-  postgres:
+
 networks:
   12-factor-app:

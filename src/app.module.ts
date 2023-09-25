@@ -1,4 +1,10 @@
-import { Logger, Module, OnModuleDestroy, OnModuleInit } from '@nestjs/common';
+import {
+  Logger,
+  Module,
+  OnApplicationShutdown,
+  OnModuleDestroy,
+  OnModuleInit,
+} from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ConfigModule, ConfigService } from '@nestjs/config';
@@ -9,7 +15,9 @@ import { PrismaService } from './prisma.service';
   controllers: [AppController],
   providers: [AppService, PrismaService],
 })
-export class AppModule implements OnModuleInit, OnModuleDestroy {
+export class AppModule
+  implements OnModuleInit, OnModuleDestroy, OnApplicationShutdown
+{
   constructor(
     private config: ConfigService,
     private prisma: PrismaService,
@@ -26,7 +34,11 @@ export class AppModule implements OnModuleInit, OnModuleDestroy {
   }
 
   async onModuleDestroy() {
-    this.logger.log('SHUTTING DOWN...');
+    this.logger.warn('SHUTTING DOWN...');
     this.prisma.$disconnect();
+  }
+
+  onApplicationShutdown(signal?: string) {
+    this.logger.warn(`Received signal: ${signal}`);
   }
 }
