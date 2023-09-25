@@ -17,17 +17,7 @@
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "jest --config ./test/jest-e2e.json",
-    "DOCKER": "##############################################",
-    "db:up": "docker run --name postgres-db -e POSTGRES_PASSWORD=postgres -p 5432:5432 -d postgres",
-    "PRISMA": "##############################################",
-    "prisma:generate": "npx prisma generate",
-    "prisma:push": "npx prisma db push",
-    "prisma:studio": "npx prisma studio",
-    "migrate:reset": "npx prisma migrate reset",
-    "migrate:dev": "npx prisma migrate dev",
-    "migrate:dev:create": "npx prisma migrate dev --create-only",
-    "migrate:deploy": "npx prisma migrate deploy"
+    "test:e2e": "jest --config ./test/jest-e2e.json"
   },
   "dependencies": {
     "@nestjs/common": "^10.0.0",
