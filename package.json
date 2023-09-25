@@ -20,6 +20,7 @@
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "DOCKER": "##############################################",
     "db:up": "docker compose -f ./docker/docker-compose.dev.yml up -d",
+    "prod:up": "docker compose -f ./docker/docker-compose.prod.yml up -d",
     "PRISMA": "##############################################",
     "prisma:seed": "npx prisma db seed",
     "prisma:generate": "npx prisma generate",
